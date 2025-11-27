@@ -1,0 +1,244 @@
+<div class="min-h-screen bg-gray-50 flex font-sans text-slate-900">
+  <!-- Sidebar -->
+  <aside
+    class="w-72 bg-slate-900 text-gray-300 shadow-xl fixed h-full z-20 print:hidden flex flex-col transition-all duration-300">
+    <!-- Logo Area -->
+    <div class="p-6 border-b border-slate-800">
+      <h1 class="text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+        <div class="relative group">
+          <div
+            class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200">
+          </div>
+          <img src="assets/arch_calculator_logo.jpg" alt="Logo"
+            class="relative w-10 h-10 rounded-lg shadow-md ring-1 ring-slate-900" />
+        </div>
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">ArchCost</span>
+      </h1>
+      <p class="text-xs text-slate-400 mt-2 font-medium uppercase tracking-wider pl-1" i18n>Cloud Cost Estimator</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
+      <a href="#architecture"
+        class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-slate-800 hover:text-white group">
+        <div
+          class="p-2 bg-slate-800 rounded-lg group-hover:bg-blue-600 transition-colors text-slate-400 group-hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+            </path>
+          </svg>
+        </div>
+        <span class="font-medium" i18n>Architecture</span>
+      </a>
+
+      <a href="#traffic"
+        class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-slate-800 hover:text-white group">
+        <div
+          class="p-2 bg-slate-800 rounded-lg group-hover:bg-cyan-600 transition-colors text-slate-400 group-hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6">
+            </path>
+          </svg>
+        </div>
+        <span class="font-medium" i18n>Traffic & Scale</span>
+      </a>
+
+      <a href="#costs"
+        class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-slate-800 hover:text-white group">
+        <div
+          class="p-2 bg-slate-800 rounded-lg group-hover:bg-green-600 transition-colors text-slate-400 group-hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+            </path>
+          </svg>
+        </div>
+        <span class="font-medium" i18n>Cost Analysis</span>
+      </a>
+
+      <a href="#optimization"
+        class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-slate-800 hover:text-white group">
+        <div
+          class="p-2 bg-slate-800 rounded-lg group-hover:bg-purple-600 transition-colors text-slate-400 group-hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <span class="font-medium" i18n>Optimization</span>
+      </a>
+    </nav>
+
+    <!-- Bottom Actions -->
+    <div class="p-4 border-t border-slate-800 bg-slate-900/50 space-y-4">
+      <app-language-selector></app-language-selector>
+      <app-currency-selector [selectedCurrency]="selectedCurrency"
+        (currencyChanged)="onCurrencyChanged($event)"></app-currency-selector>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 ml-72 print:ml-0 transition-all duration-300">
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-10 border-b border-gray-200 print:hidden">
+      <div class="px-8 py-4 flex justify-between items-center">
+        <div>
+          <h2 class="text-xl font-bold text-slate-800 tracking-tight" i18n>Infrastructure Cost Estimation</h2>
+          <p class="text-sm text-slate-500 font-medium">{{ date | date:'medium' }}</p>
+        </div>
+
+        <div class="flex gap-3">
+          <button (click)="exportToCsv()" class="btn-secondary flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+              </path>
+            </svg>
+            <span i18n>Export CSV</span>
+          </button>
+          <button (click)="exportPdf()" class="btn-primary flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z">
+              </path>
+            </svg>
+            <span i18n>Export PDF</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Print Header -->
+    <div class="hidden print:block px-8 py-6 border-b">
+      <h1 class="text-3xl font-bold text-gray-900">{{ title }} - <span i18n>Cost Estimation Report</span></h1>
+      <p class="text-gray-600 mt-2"><span i18n>Generated on</span> {{ date | date:'fullDate' }}</p>
+    </div>
+
+    <!-- Content Area -->
+    <div class="p-8 space-y-10 max-w-7xl mx-auto" @fadeIn>
+      <!-- Architecture Selection -->
+      <section id="architecture" class="scroll-mt-24">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center shadow-sm">
+            <span class="text-blue-600 font-bold text-xl">1</span>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-slate-800 tracking-tight" i18n>Select Architecture Pattern</h2>
+            <p class="text-slate-500" i18n>Choose the infrastructure architecture that best fits your needs</p>
+          </div>
+        </div>
+        <app-architecture-selector (architectureSelected)="onArchitectureSelected($event)"></app-architecture-selector>
+      </section>
+
+      <!-- Traffic & Cost Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Traffic Input -->
+        <section id="traffic" class="lg:col-span-4 scroll-mt-24">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center shadow-sm">
+              <span class="text-cyan-600 font-bold text-xl">2</span>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-slate-800 tracking-tight" i18n>Traffic & Scale</h2>
+              <p class="text-sm text-slate-500" i18n>Define your traffic metrics</p>
+            </div>
+          </div>
+          <app-traffic-input (trafficChanged)="onTrafficChanged($event)"></app-traffic-input>
+        </section>
+
+        <!-- Cost Analysis -->
+        <section id="costs" class="lg:col-span-8 scroll-mt-24">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center shadow-sm">
+              <span class="text-green-600 font-bold text-xl">3</span>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-slate-800 tracking-tight" i18n>Cost Projection</h2>
+              <p class="text-sm text-slate-500" i18n>Real-time infrastructure cost estimates</p>
+            </div>
+          </div>
+
+          <!-- Loading State -->
+          <div *ngIf="loading"
+            class="flex flex-col items-center justify-center py-20 bg-white rounded-xl shadow-sm border border-gray-200">
+            <div class="relative">
+              <div class="w-16 h-16 border-4 border-blue-100 rounded-full"></div>
+              <div
+                class="w-16 h-16 border-4 border-blue-600 rounded-full absolute top-0 left-0 animate-spin border-t-transparent">
+              </div>
+            </div>
+            <p class="mt-6 text-slate-600 font-medium animate-pulse" i18n>Calculating infrastructure costs...</p>
+          </div>
+
+          <!-- Error State -->
+          <div *ngIf="error" class="bg-red-50 border-l-4 border-red-500 px-6 py-4 rounded-r-lg shadow-sm">
+            <div class="flex items-center gap-3">
+              <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <p class="text-red-700 font-medium">{{ error }}</p>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div *ngIf="estimationResult && !loading" class="space-y-6">
+            <app-cost-dashboard [result]="estimationResult" [currency]="selectedCurrency"></app-cost-dashboard>
+            <app-multi-cloud-table [result]="estimationResult" [currency]="selectedCurrency"></app-multi-cloud-table>
+            <app-scaling-scenarios [result]="estimationResult" [currency]="selectedCurrency"></app-scaling-scenarios>
+          </div>
+        </section>
+      </div>
+
+      <!-- Optimization & Business Metrics -->
+      <div id="optimization" class="grid grid-cols-1 lg:grid-cols-2 gap-8 scroll-mt-24">
+        <app-optimization-tips *ngIf="estimationResult" [result]="estimationResult"></app-optimization-tips>
+        <app-business-metrics *ngIf="estimationResult" [result]="estimationResult"
+          [currency]="selectedCurrency"></app-business-metrics>
+      </div>
+
+      <!-- Footer -->
+      <footer class="mt-16 pt-8 pb-6 border-t border-gray-200 print:hidden text-slate-500">
+        <div class="max-w-7xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <!-- About Section -->
+            <div>
+              <h3 class="text-lg font-bold text-slate-800 mb-3">ArchCost</h3>
+              <p class="text-sm leading-relaxed" i18n>
+                Comprehensive cloud infrastructure cost estimation tool for architecture planning and optimization.
+              </p>
+            </div>
+            <!-- Quick Links -->
+            <div>
+              <h3 class="text-lg font-bold text-slate-800 mb-3" i18n>Quick Links</h3>
+              <ul class="space-y-2 text-sm">
+                <li><a href="#architecture" class="hover:text-blue-600 transition-colors" i18n>Architecture</a></li>
+                <li><a href="#traffic" class="hover:text-blue-600 transition-colors" i18n>Traffic & Scale</a></li>
+                <li><a href="#costs" class="hover:text-blue-600 transition-colors" i18n>Cost Analysis</a></li>
+                <li><a href="#optimization" class="hover:text-blue-600 transition-colors" i18n>Optimization</a></li>
+              </ul>
+            </div>
+            <!-- Resources -->
+            <div>
+              <h3 class="text-lg font-bold text-slate-800 mb-3" i18n>Resources</h3>
+              <ul class="space-y-2 text-sm">
+                <li><a href="#" class="hover:text-blue-600 transition-colors" i18n>Documentation</a></li>
+                <li><a href="#" class="hover:text-blue-600 transition-colors" i18n>API Reference</a></li>
+                <li><a href="#" class="hover:text-blue-600 transition-colors" i18n>Support</a></li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="pt-6 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+            <p>© {{ date | date:'yyyy' }} ArchCost. <span i18n>All rights reserved.</span></p>
+            <div class="flex gap-6">
+              <a href="#" class="hover:text-blue-600 transition-colors" i18n>Privacy Policy</a>
+              <a href="#" class="hover:text-blue-600 transition-colors" i18n>Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+</div>

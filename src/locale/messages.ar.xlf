@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="ar" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="5542541971942896424" datatype="html">
+        <source>Cloud Cost Estimator</source>
+        <target>مقدر تكلفة السحابة</target>
+      </trans-unit>
+      <trans-unit id="4764104020334215003" datatype="html">
+        <source>Architecture</source>
+        <target>الهندسة المعمارية</target>
+      </trans-unit>
+      <trans-unit id="4566099877552890922" datatype="html">
+        <source>Traffic &amp; Scale</source>
+        <target>حركة المرور والنطاق</target>
+      </trans-unit>
+      <trans-unit id="6752904776739158924" datatype="html">
+        <source>Cost Analysis</source>
+        <target>تحليل التكلفة</target>
+      </trans-unit>
+      <trans-unit id="7680394922495612157" datatype="html">
+        <source>Optimization</source>
+        <target>التحسين</target>
+      </trans-unit>
+      <trans-unit id="2911706702456434549" datatype="html">
+        <source>Infrastructure Cost Estimation</source>
+        <target>تقدير تكلفة البنية التحتية</target>
+      </trans-unit>
+      <trans-unit id="5158177792461436439" datatype="html">
+        <source>Export CSV</source>
+        <target>تصدير CSV</target>
+      </trans-unit>
+      <trans-unit id="73660989008934849" datatype="html">
+        <source>Export PDF</source>
+        <target>تصدير PDF</target>
+      </trans-unit>
+      <trans-unit id="162715731798875267" datatype="html">
+        <source>Cost Estimation Report</source>
+        <target>تقرير تقدير التكلفة</target>
+      </trans-unit>
+      <trans-unit id="259214350349697051" datatype="html">
+        <source>Generated on</source>
+        <target>تم إنشاؤه في</target>
+      </trans-unit>
+      <trans-unit id="8317188547205898510" datatype="html">
+        <source>Select Architecture Pattern</source>
+        <target>اختر نمط الهندسة المعمارية</target>
+      </trans-unit>
+      <trans-unit id="6141665653793761408" datatype="html">
+        <source>Choose the infrastructure architecture that best fits your needs</source>
+        <target>اختر بنية البنية التحتية التي تناسب احتياجاتك بشكل أفضل</target>
+      </trans-unit>
+      <trans-unit id="6040705958127665236" datatype="html">
+        <source>Define your traffic metrics</source>
+        <target>حدد مقاييس حركة المرور الخاصة بك</target>
+      </trans-unit>
+      <trans-unit id="260502586070944715" datatype="html">
+        <source>Cost Projection</source>
+        <target>توقع التكلفة</target>
+      </trans-unit>
+      <trans-unit id="829392285770243521" datatype="html">
+        <source>Real-time infrastructure cost estimates</source>
+        <target>تقديرات تكلفة البنية التحتية في الوقت الفعلي</target>
+      </trans-unit>
+      <trans-unit id="8427586112413184190" datatype="html">
+        <source>Calculating infrastructure costs...</source>
+        <target>جاري حساب تكاليف البنية التحتية...</target>
+      </trans-unit>
+      <trans-unit id="3041222012688803476" datatype="html">
+        <source> Comprehensive cloud infrastructure cost estimation tool for architecture planning and optimization. </source>
+        <target> أداة شاملة لتقدير تكلفة البنية التحتية السحابية لتخطيط الهندسة المعمارية وتحسينها. </target>
+      </trans-unit>
+      <trans-unit id="1140327701924892323" datatype="html">
+        <source>Quick Links</source>
+        <target>روابط سريعة</target>
+      </trans-unit>
+      <trans-unit id="2446117790692479672" datatype="html">
+        <source>Resources</source>
+        <target>موارد</target>
+      </trans-unit>
+      <trans-unit id="4895326106573044490" datatype="html">
+        <source>Documentation</source>
+        <target>توثيق</target>
+      </trans-unit>
+      <trans-unit id="1448777321224526948" datatype="html">
+        <source>API Reference</source>
+        <target>مرجع API</target>
+      </trans-unit>
+      <trans-unit id="2288513108450439427" datatype="html">
+        <source>Support</source>
+        <target>دعم</target>
+      </trans-unit>
+      <trans-unit id="7922989125096435449" datatype="html">
+        <source>Contact</source>
+        <target>اتصال</target>
+      </trans-unit>
+      <trans-unit id="3704426281480438191" datatype="html">
+        <source>All rights reserved.</source>
+        <target>جميع الحقوق محفوظة.</target>
+      </trans-unit>
+      <trans-unit id="8439955599488894226" datatype="html">
+        <source>Privacy Policy</source>
+        <target>سياسة الخصوصية</target>
+      </trans-unit>
+      <trans-unit id="2029980907058777630" datatype="html">
+        <source>Terms of Service</source>
+        <target>شروط الخدمة</target>
+      </trans-unit>
+      <trans-unit id="8031435937841016824" datatype="html">
+        <source>Cookie Policy</source>
+        <target>سياسة ملفات تعريف الارتباط</target>
+      </trans-unit>
+      <trans-unit id="2826581353496868063" datatype="html">
+        <source>Language</source>
+        <target>لغة</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

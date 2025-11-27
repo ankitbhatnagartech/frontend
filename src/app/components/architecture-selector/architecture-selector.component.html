@@ -1,0 +1,54 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+  <div *ngFor="let opt of options" (click)="select(opt.type)"
+    [class]="'card p-6 cursor-pointer border-2 transition-all duration-300 ' + 
+                (selected === opt.type ? 'border-blue-500 bg-blue-50 shadow-lg scale-105' : 'border-gray-200 hover:border-blue-300 hover:shadow-md')"
+    [class.print:hidden]="selected !== opt.type">
+
+    <div class="flex flex-col items-center text-center space-y-3">
+      <!-- Icon -->
+      <div
+        [class]="'w-14 h-14 rounded-xl flex items-center justify-center transition-all ' + 
+                    (selected === opt.type ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600 group-hover:bg-blue-100')">
+        <svg *ngIf="opt.type === 'monolith'" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+          </path>
+        </svg>
+        <svg *ngIf="opt.type === 'microservices'" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z">
+          </path>
+        </svg>
+        <svg *ngIf="opt.type === 'serverless'" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+        </svg>
+        <svg *ngIf="opt.type === 'hybrid'" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z">
+          </path>
+        </svg>
+      </div>
+
+      <!-- Label -->
+      <div>
+        <h3 [class]="'font-bold text-lg mb-1 ' + (selected === opt.type ? 'text-blue-700' : 'text-gray-900')">
+          {{opt.label}}
+        </h3>
+        <p class="text-sm text-gray-600 leading-relaxed">{{opt.desc}}</p>
+      </div>
+
+      <!-- Selected Indicator -->
+      <div *ngIf="selected === opt.type" class="mt-2">
+        <div class="flex items-center gap-1 text-blue-600 text-sm font-medium">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <span>Selected</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="hi" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="5542541971942896424" datatype="html">
+        <source>Cloud Cost Estimator</source>
+        <target>क्लाउड लागत अनुमानक</target>
+      </trans-unit>
+      <trans-unit id="4764104020334215003" datatype="html">
+        <source>Architecture</source>
+        <target>आर्किटेक्चर</target>
+      </trans-unit>
+      <trans-unit id="4566099877552890922" datatype="html">
+        <source>Traffic &amp; Scale</source>
+        <target>ट्रैफ़िक और स्केल</target>
+      </trans-unit>
+      <trans-unit id="6752904776739158924" datatype="html">
+        <source>Cost Analysis</source>
+        <target>लागत विश्लेषण</target>
+      </trans-unit>
+      <trans-unit id="7680394922495612157" datatype="html">
+        <source>Optimization</source>
+        <target>अनुकूलन</target>
+      </trans-unit>
+      <trans-unit id="2911706702456434549" datatype="html">
+        <source>Infrastructure Cost Estimation</source>
+        <target>इन्फ्रास्ट्रक्चर लागत अनुमान</target>
+      </trans-unit>
+      <trans-unit id="5158177792461436439" datatype="html">
+        <source>Export CSV</source>
+        <target>CSV निर्यात करें</target>
+      </trans-unit>
+      <trans-unit id="73660989008934849" datatype="html">
+        <source>Export PDF</source>
+        <target>PDF निर्यात करें</target>
+      </trans-unit>
+      <trans-unit id="162715731798875267" datatype="html">
+        <source>Cost Estimation Report</source>
+        <target>लागत अनुमान रिपोर्ट</target>
+      </trans-unit>
+      <trans-unit id="259214350349697051" datatype="html">
+        <source>Generated on</source>
+        <target>पर उत्पन्न</target>
+      </trans-unit>
+      <trans-unit id="8317188547205898510" datatype="html">
+        <source>Select Architecture Pattern</source>
+        <target>आर्किटेक्चर पैटर्न चुनें</target>
+      </trans-unit>
+      <trans-unit id="6141665653793761408" datatype="html">
+        <source>Choose the infrastructure architecture that best fits your needs</source>
+        <target>वह इन्फ्रास्ट्रक्चर आर्किटेक्चर चुनें जो आपकी आवश्यकताओं के लिए सबसे उपयुक्त हो</target>
+      </trans-unit>
+      <trans-unit id="6040705958127665236" datatype="html">
+        <source>Define your traffic metrics</source>
+        <target>अपने ट्रैफ़िक मेट्रिक्स को परिभाषित करें</target>
+      </trans-unit>
+      <trans-unit id="260502586070944715" datatype="html">
+        <source>Cost Projection</source>
+        <target>लागत अनुमान</target>
+      </trans-unit>
+      <trans-unit id="829392285770243521" datatype="html">
+        <source>Real-time infrastructure cost estimates</source>
+        <target>रीयल-टाइम इन्फ्रास्ट्रक्चर लागत अनुमान</target>
+      </trans-unit>
+      <trans-unit id="8427586112413184190" datatype="html">
+        <source>Calculating infrastructure costs...</source>
+        <target>इन्फ्रास्ट्रक्चर लागत की गणना की जा रही है...</target>
+      </trans-unit>
+      <trans-unit id="3041222012688803476" datatype="html">
+        <source> Comprehensive cloud infrastructure cost estimation tool for architecture planning and optimization. </source>
+        <target> आर्किटेक्चर योजना और अनुकूलन के लिए व्यापक क्लाउड इन्फ्रास्ट्रक्चर लागत अनुमान उपकरण। </target>
+      </trans-unit>
+      <trans-unit id="1140327701924892323" datatype="html">
+        <source>Quick Links</source>
+        <target>त्वरित लिंक</target>
+      </trans-unit>
+      <trans-unit id="2446117790692479672" datatype="html">
+        <source>Resources</source>
+        <target>संसाधन</target>
+      </trans-unit>
+      <trans-unit id="4895326106573044490" datatype="html">
+        <source>Documentation</source>
+        <target>दस्तावेज़ीकरण</target>
+      </trans-unit>
+      <trans-unit id="1448777321224526948" datatype="html">
+        <source>API Reference</source>
+        <target>API संदर्भ</target>
+      </trans-unit>
+      <trans-unit id="2288513108450439427" datatype="html">
+        <source>Support</source>
+        <target>सहायता</target>
+      </trans-unit>
+      <trans-unit id="7922989125096435449" datatype="html">
+        <source>Contact</source>
+        <target>संपर्क करें</target>
+      </trans-unit>
+      <trans-unit id="3704426281480438191" datatype="html">
+        <source>All rights reserved.</source>
+        <target>सर्वाधिकार सुरक्षित।</target>
+      </trans-unit>
+      <trans-unit id="8439955599488894226" datatype="html">
+        <source>Privacy Policy</source>
+        <target>गोपनीयता नीति</target>
+      </trans-unit>
+      <trans-unit id="2029980907058777630" datatype="html">
+        <source>Terms of Service</source>
+        <target>सेवा की शर्तें</target>
+      </trans-unit>
+      <trans-unit id="8031435937841016824" datatype="html">
+        <source>Cookie Policy</source>
+        <target>कुकी नीति</target>
+      </trans-unit>
+      <trans-unit id="2826581353496868063" datatype="html">
+        <source>Language</source>
+        <target>भाषा</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

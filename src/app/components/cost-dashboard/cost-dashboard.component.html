@@ -1,0 +1,43 @@
+<div *ngIf="result" class="space-y-6">
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-4 text-green-700"><span i18n>Estimated Monthly Cost:</span>
+            {{result.monthly_cost.total |
+            currency:currency:'symbol':'1.2-2'}}</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <h3 class="font-bold mb-2" i18n>Cost Breakdown</h3>
+                <ul class="space-y-2">
+                    <li class="flex justify-between"><span i18n>Compute:</span> <span>{{result.monthly_cost.compute |
+                            currency:currency:'symbol':'1.2-2'}}</span></li>
+                    <li class="flex justify-between"><span i18n>Database:</span> <span>{{result.monthly_cost.database |
+                            currency:currency:'symbol':'1.2-2'}}</span></li>
+                    <li class="flex justify-between"><span i18n>Storage:</span> <span>{{result.monthly_cost.storage |
+                            currency:currency:'symbol':'1.2-2'}}</span></li>
+                    <li class="flex justify-between"><span i18n>Networking:</span>
+                        <span>{{result.monthly_cost.networking |
+                            currency:currency:'symbol':'1.2-2'}}</span></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-bold mb-2" i18n>Infrastructure Requirements</h3>
+                <ul class="space-y-2 text-sm">
+                    <li *ngFor="let item of result.infrastructure_requirements | keyvalue">
+                        <span class="font-semibold">{{item.key}}:</span> {{item.value}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+        <h3 class="font-bold mb-2" i18n>3-Year Projection</h3>
+        <div class="flex justify-between">
+            <div *ngFor="let item of result.three_year_projection | keyvalue" class="text-center">
+                <div class="text-gray-600">{{item.key}}</div>
+                <div class="font-bold text-xl">{{item.value | currency:currency:'symbol':'1.0-0'}}</div>
+            </div>
+        </div>
+    </div>
+</div>

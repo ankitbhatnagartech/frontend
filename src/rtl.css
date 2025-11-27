@@ -1,0 +1,56 @@
+/* RTL (Right-to-Left) Support for Arabic */
+html[dir="rtl"] {
+    direction: rtl;
+}
+
+html[dir="rtl"] body {
+    text-align: right;
+}
+
+/* Flip sidebar to right side for RTL */
+html[dir="rtl"] aside {
+    right: 0;
+    left: auto;
+}
+
+html[dir="rtl"] main {
+    margin-right: 16rem;
+    /* w-64 = 16rem */
+    margin-left: 0;
+}
+
+/* Flip flex directions */
+html[dir="rtl"] .flex {
+    direction: rtl;
+}
+
+/* Flip text alignment */
+html[dir="rtl"] .text-left {
+    text-align: right;
+}
+
+html[dir="rtl"] .text-right {
+    text-align: left;
+}
+
+/* Flip margins and paddings */
+html[dir="rtl"] .ml-2 {
+    margin-right: 0.5rem;
+    margin-left: 0;
+}
+
+html[dir="rtl"] .mr-2 {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+html[dir="rtl"] .ml-64 {
+    margin-right: 16rem;
+    margin-left: 0;
+}
+
+/* Flip border directions */
+html[dir="rtl"] .border-l-4 {
+    border-right-width: 4px;
+    border-left-width: 0;
+}

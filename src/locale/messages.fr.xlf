@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="5542541971942896424" datatype="html">
+        <source>Cloud Cost Estimator</source>
+        <target>Estimateur de Coûts Cloud</target>
+      </trans-unit>
+      <trans-unit id="4764104020334215003" datatype="html">
+        <source>Architecture</source>
+        <target>Architecture</target>
+      </trans-unit>
+      <trans-unit id="4566099877552890922" datatype="html">
+        <source>Traffic &amp; Scale</source>
+        <target>Trafic et Échelle</target>
+      </trans-unit>
+      <trans-unit id="6752904776739158924" datatype="html">
+        <source>Cost Analysis</source>
+        <target>Analyse des Coûts</target>
+      </trans-unit>
+      <trans-unit id="7680394922495612157" datatype="html">
+        <source>Optimization</source>
+        <target>Optimisation</target>
+      </trans-unit>
+      <trans-unit id="2911706702456434549" datatype="html">
+        <source>Infrastructure Cost Estimation</source>
+        <target>Estimation des Coûts d'Infrastructure</target>
+      </trans-unit>
+      <trans-unit id="5158177792461436439" datatype="html">
+        <source>Export CSV</source>
+        <target>Exporter CSV</target>
+      </trans-unit>
+      <trans-unit id="73660989008934849" datatype="html">
+        <source>Export PDF</source>
+        <target>Exporter PDF</target>
+      </trans-unit>
+      <trans-unit id="162715731798875267" datatype="html">
+        <source>Cost Estimation Report</source>
+        <target>Rapport d'Estimation des Coûts</target>
+      </trans-unit>
+      <trans-unit id="259214350349697051" datatype="html">
+        <source>Generated on</source>
+        <target>Généré le</target>
+      </trans-unit>
+      <trans-unit id="8317188547205898510" datatype="html">
+        <source>Select Architecture Pattern</source>
+        <target>Sélectionner un Modèle d'Architecture</target>
+      </trans-unit>
+      <trans-unit id="6141665653793761408" datatype="html">
+        <source>Choose the infrastructure architecture that best fits your needs</source>
+        <target>Choisissez l'architecture d'infrastructure qui correspond le mieux à vos besoins</target>
+      </trans-unit>
+      <trans-unit id="6040705958127665236" datatype="html">
+        <source>Define your traffic metrics</source>
+        <target>Définissez vos métriques de trafic</target>
+      </trans-unit>
+      <trans-unit id="260502586070944715" datatype="html">
+        <source>Cost Projection</source>
+        <target>Projection des Coûts</target>
+      </trans-unit>
+      <trans-unit id="829392285770243521" datatype="html">
+        <source>Real-time infrastructure cost estimates</source>
+        <target>Estimations des coûts d'infrastructure en temps réel</target>
+      </trans-unit>
+      <trans-unit id="8427586112413184190" datatype="html">
+        <source>Calculating infrastructure costs...</source>
+        <target>Calcul des coûts d'infrastructure...</target>
+      </trans-unit>
+      <trans-unit id="3041222012688803476" datatype="html">
+        <source> Comprehensive cloud infrastructure cost estimation tool for architecture planning and optimization. </source>
+        <target> Outil complet d'estimation des coûts d'infrastructure cloud pour la planification et l'optimisation de l'architecture. </target>
+      </trans-unit>
+      <trans-unit id="1140327701924892323" datatype="html">
+        <source>Quick Links</source>
+        <target>Liens Rapides</target>
+      </trans-unit>
+      <trans-unit id="2446117790692479672" datatype="html">
+        <source>Resources</source>
+        <target>Ressources</target>
+      </trans-unit>
+      <trans-unit id="4895326106573044490" datatype="html">
+        <source>Documentation</source>
+        <target>Documentation</target>
+      </trans-unit>
+      <trans-unit id="1448777321224526948" datatype="html">
+        <source>API Reference</source>
+        <target>Référence API</target>
+      </trans-unit>
+      <trans-unit id="2288513108450439427" datatype="html">
+        <source>Support</source>
+        <target>Support</target>
+      </trans-unit>
+      <trans-unit id="7922989125096435449" datatype="html">
+        <source>Contact</source>
+        <target>Contact</target>
+      </trans-unit>
+      <trans-unit id="3704426281480438191" datatype="html">
+        <source>All rights reserved.</source>
+        <target>Tous droits réservés.</target>
+      </trans-unit>
+      <trans-unit id="8439955599488894226" datatype="html">
+        <source>Privacy Policy</source>
+        <target>Politique de Confidentialité</target>
+      </trans-unit>
+      <trans-unit id="2029980907058777630" datatype="html">
+        <source>Terms of Service</source>
+        <target>Conditions d'Utilisation</target>
+      </trans-unit>
+      <trans-unit id="8031435937841016824" datatype="html">
+        <source>Cookie Policy</source>
+        <target>Politique de Cookies</target>
+      </trans-unit>
+      <trans-unit id="2826581353496868063" datatype="html">
+        <source>Language</source>
+        <target>Langue</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

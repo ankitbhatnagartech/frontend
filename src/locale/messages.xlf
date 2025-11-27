@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="5542541971942896424" datatype="html">
+        <source>Cloud Cost Estimator</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4764104020334215003" datatype="html">
+        <source>Architecture</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">199,200</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4566099877552890922" datatype="html">
+        <source>Traffic &amp; Scale</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">125,126</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">201</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6752904776739158924" datatype="html">
+        <source>Cost Analysis</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">204</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7680394922495612157" datatype="html">
+        <source>Optimization</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">206,207</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2911706702456434549" datatype="html">
+        <source>Infrastructure Cost Estimation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">67,68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5158177792461436439" datatype="html">
+        <source>Export CSV</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">79,80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="73660989008934849" datatype="html">
+        <source>Export PDF</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">88,89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="162715731798875267" datatype="html">
+        <source>Cost Estimation Report</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="259214350349697051" datatype="html">
+        <source>Generated on</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8317188547205898510" datatype="html">
+        <source>Select Architecture Pattern</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">109,110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6141665653793761408" datatype="html">
+        <source>Choose the infrastructure architecture that best fits your needs</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">110,111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6040705958127665236" datatype="html">
+        <source>Define your traffic metrics</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">126,127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="260502586070944715" datatype="html">
+        <source>Cost Projection</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">139,140</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="829392285770243521" datatype="html">
+        <source>Real-time infrastructure cost estimates</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">140,141</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8427586112413184190" datatype="html">
+        <source>Calculating infrastructure costs...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">152,153</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3041222012688803476" datatype="html">
+        <source> Comprehensive cloud infrastructure cost estimation tool for architecture planning and optimization. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">190</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1140327701924892323" datatype="html">
+        <source>Quick Links</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">196,197</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2446117790692479672" datatype="html">
+        <source>Resources</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">212,213</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4895326106573044490" datatype="html">
+        <source>Documentation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">215,216</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1448777321224526948" datatype="html">
+        <source>API Reference</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">218</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2288513108450439427" datatype="html">
+        <source>Support</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">220,221</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7922989125096435449" datatype="html">
+        <source>Contact</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">222,223</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3704426281480438191" datatype="html">
+        <source>All rights reserved.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">232,233</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8439955599488894226" datatype="html">
+        <source>Privacy Policy</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">235,236</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2029980907058777630" datatype="html">
+        <source>Terms of Service</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">236,237</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8031435937841016824" datatype="html">
+        <source>Cookie Policy</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">238,239</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2281209434780500625" datatype="html">
+        <source>Business Viability</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/business-metrics/business-metrics.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1883644858616678424" datatype="html">
+        <source>Estimated Monthly Cost:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cost-dashboard/cost-dashboard.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4516709684436097562" datatype="html">
+        <source>Cost Breakdown</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cost-dashboard/cost-dashboard.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6599878679483288742" datatype="html">
+        <source>Compute:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cost-dashboard/cost-dashboard.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6467334432454060505" datatype="html">
+        <source>Database:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cost-dashboard/cost-dashboard.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9136752928013288532" datatype="html">
+        <source>Storage:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cost-dashboard/cost-dashboard.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9124750132677694578" datatype="html">
+        <source>Networking:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cost-dashboard/cost-dashboard.component.html</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9209507785759547433" datatype="html">
+        <source>Infrastructure Requirements</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cost-dashboard/cost-dashboard.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2124773886928079088" datatype="html">
+        <source>3-Year Projection</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cost-dashboard/cost-dashboard.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2826581353496868063" datatype="html">
+        <source>Language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/language-selector/language-selector.component.ts</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5368830186527248065" datatype="html">
+        <source>Multi-Cloud Comparison</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/multi-cloud-table/multi-cloud-table.component.html</context>
+          <context context-type="linenumber">2,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8232773653071363045" datatype="html">
+        <source>Provider</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/multi-cloud-table/multi-cloud-table.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5375350201194530573" datatype="html">
+        <source>Estimated Monthly Cost</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/multi-cloud-table/multi-cloud-table.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5613733318610282610" datatype="html">
+        <source>Difference</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/multi-cloud-table/multi-cloud-table.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4869392941882797356" datatype="html">
+        <source>Best Value</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/multi-cloud-table/multi-cloud-table.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5443345966114232842" datatype="html">
+        <source>Baseline</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/multi-cloud-table/multi-cloud-table.component.html</context>
+          <context context-type="linenumber">23,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4772472379723679618" datatype="html">
+        <source>% of AWS</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/multi-cloud-table/multi-cloud-table.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5499300325177831901" datatype="html">
+        <source>Optimization Opportunities</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/optimization-tips/optimization-tips.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

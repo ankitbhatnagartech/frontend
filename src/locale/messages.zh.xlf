@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="zh" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="5542541971942896424" datatype="html">
+        <source>Cloud Cost Estimator</source>
+        <target>云成本估算器</target>
+      </trans-unit>
+      <trans-unit id="4764104020334215003" datatype="html">
+        <source>Architecture</source>
+        <target>架构</target>
+      </trans-unit>
+      <trans-unit id="4566099877552890922" datatype="html">
+        <source>Traffic &amp; Scale</source>
+        <target>流量与规模</target>
+      </trans-unit>
+      <trans-unit id="6752904776739158924" datatype="html">
+        <source>Cost Analysis</source>
+        <target>成本分析</target>
+      </trans-unit>
+      <trans-unit id="7680394922495612157" datatype="html">
+        <source>Optimization</source>
+        <target>优化</target>
+      </trans-unit>
+      <trans-unit id="2911706702456434549" datatype="html">
+        <source>Infrastructure Cost Estimation</source>
+        <target>基础设施成本估算</target>
+      </trans-unit>
+      <trans-unit id="5158177792461436439" datatype="html">
+        <source>Export CSV</source>
+        <target>导出 CSV</target>
+      </trans-unit>
+      <trans-unit id="73660989008934849" datatype="html">
+        <source>Export PDF</source>
+        <target>导出 PDF</target>
+      </trans-unit>
+      <trans-unit id="162715731798875267" datatype="html">
+        <source>Cost Estimation Report</source>
+        <target>成本估算报告</target>
+      </trans-unit>
+      <trans-unit id="259214350349697051" datatype="html">
+        <source>Generated on</source>
+        <target>生成于</target>
+      </trans-unit>
+      <trans-unit id="8317188547205898510" datatype="html">
+        <source>Select Architecture Pattern</source>
+        <target>选择架构模式</target>
+      </trans-unit>
+      <trans-unit id="6141665653793761408" datatype="html">
+        <source>Choose the infrastructure architecture that best fits your needs</source>
+        <target>选择最适合您需求的基础设施架构</target>
+      </trans-unit>
+      <trans-unit id="6040705958127665236" datatype="html">
+        <source>Define your traffic metrics</source>
+        <target>定义您的流量指标</target>
+      </trans-unit>
+      <trans-unit id="260502586070944715" datatype="html">
+        <source>Cost Projection</source>
+        <target>成本预测</target>
+      </trans-unit>
+      <trans-unit id="829392285770243521" datatype="html">
+        <source>Real-time infrastructure cost estimates</source>
+        <target>实时基础设施成本估算</target>
+      </trans-unit>
+      <trans-unit id="8427586112413184190" datatype="html">
+        <source>Calculating infrastructure costs...</source>
+        <target>正在计算基础设施成本...</target>
+      </trans-unit>
+      <trans-unit id="3041222012688803476" datatype="html">
+        <source> Comprehensive cloud infrastructure cost estimation tool for architecture planning and optimization. </source>
+        <target> 用于架构规划和优化的综合云基础设施成本估算工具。 </target>
+      </trans-unit>
+      <trans-unit id="1140327701924892323" datatype="html">
+        <source>Quick Links</source>
+        <target>快速链接</target>
+      </trans-unit>
+      <trans-unit id="2446117790692479672" datatype="html">
+        <source>Resources</source>
+        <target>资源</target>
+      </trans-unit>
+      <trans-unit id="4895326106573044490" datatype="html">
+        <source>Documentation</source>
+        <target>文档</target>
+      </trans-unit>
+      <trans-unit id="1448777321224526948" datatype="html">
+        <source>API Reference</source>
+        <target>API 参考</target>
+      </trans-unit>
+      <trans-unit id="2288513108450439427" datatype="html">
+        <source>Support</source>
+        <target>支持</target>
+      </trans-unit>
+      <trans-unit id="7922989125096435449" datatype="html">
+        <source>Contact</source>
+        <target>联系我们</target>
+      </trans-unit>
+      <trans-unit id="3704426281480438191" datatype="html">
+        <source>All rights reserved.</source>
+        <target>版权所有。</target>
+      </trans-unit>
+      <trans-unit id="8439955599488894226" datatype="html">
+        <source>Privacy Policy</source>
+        <target>隐私政策</target>
+      </trans-unit>
+      <trans-unit id="2029980907058777630" datatype="html">
+        <source>Terms of Service</source>
+        <target>服务条款</target>
+      </trans-unit>
+      <trans-unit id="8031435937841016824" datatype="html">
+        <source>Cookie Policy</source>
+        <target>Cookie 政策</target>
+      </trans-unit>
+      <trans-unit id="2826581353496868063" datatype="html">
+        <source>Language</source>
+        <target>语言</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

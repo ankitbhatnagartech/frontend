@@ -1,0 +1,33 @@
+<div *ngIf="result && result.multi_cloud_costs" class="bg-white p-6 rounded-lg shadow-md mt-6">
+    <h2 class="text-xl font-bold mb-4" i18n>Multi-Cloud Comparison</h2>
+    <div class="overflow-x-auto">
+        <table class="table w-full">
+            <thead>
+                <tr>
+                    <th class="text-left" i18n>Provider</th>
+                    <th class="text-right" i18n>Estimated Monthly Cost</th>
+                    <th class="text-right" i18n>Difference</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of result.multi_cloud_costs | keyvalue"
+                    [class.bg-green-50]="item.key === getCheapestProvider()" class="border-b">
+                    <td class="py-2 font-medium">
+                        {{item.key}}
+                        <span *ngIf="item.key === getCheapestProvider()"
+                            class="ml-2 text-xs bg-green-200 text-green-800 px-2 py-1 rounded-full" i18n>Best
+                            Value</span>
+                    </td>
+                    <td class="text-right font-bold">{{item.value | currency:currency:'symbol':'1.2-2'}}</td>
+                    <td class="text-right text-sm text-gray-500">
+                        <span *ngIf="item.key === 'AWS'" i18n>Baseline</span>
+                        <span *ngIf="item.key !== 'AWS'">
+                            {{ (item.value / result.multi_cloud_costs['AWS']) * 100 | number:'1.0-0' }}<span i18n>% of
+                                AWS</span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

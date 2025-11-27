@@ -1,0 +1,355 @@
+<div class="min-h-screen bg-gray-50 flex">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white shadow-lg fixed h-full z-10 print:hidden">
+    <div class="p-6 border-b border-gray-200">
+      <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+        {{ title }}
+      </h1>
+      <p class="text-xs text-gray-500 mt-1">Cloud Cost Estimator</p>
+    </div>
+
+    <nav class="p-4">
+      <div class="space-y-1">
+        <a href="#architecture"
+          class="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all group">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+            </path>
+          </svg>
+          <span class="font-medium">Architecture</span>
+        </a>
+
+        <a href="#traffic"
+          class="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6">
+            </path>
+          </svg>
+          <span class="font-medium">Traffic & Scale</span>
+        </a>
+
+        <a href="#costs"
+          class="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+            </path>
+          </svg>
+          <span class="font-medium">Cost Analysis</span>
+        </a>
+
+        <a href="#optimization"
+          class="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span class="font-medium">Optimization</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
+      <app-currency-selector [selectedCurrency]="selectedCurrency"
+        (currencyChanged)="onCurrencyChanged($event)"></app-currency-selector>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 ml-64 print:ml-0">
+    <!-- Top Bar -->
+    <header class="bg-white shadow-sm sticky top-0 z-10 print:hidden">
+      <div class="px-8 py-4 flex justify-between items-center">
+        <div class="flex-1">
+          <h2 class="text-xl font-semibold text-gray-800">Infrastructure Cost Estimation</h2>
+          <p class="text-sm text-gray-500">{{ date | date:'medium' }}</p>
+        </div>
+
+        <div class="flex gap-3">
+          <button (click)="exportToCsv()"
+            class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium shadow-sm hover:shadow-md transition-all flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+              </path>
+            </svg>
+            <span>Export CSV</span>
+          </button>
+          <button (click)="exportPdf()"
+            class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium shadow-sm hover:shadow-md transition-all flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z">
+              </path>
+            </svg>
+            <span>Export PDF</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Print Header -->
+    <div class="hidden print:block px-8 py-6 border-b">
+      <h1 class="text-3xl font-bold text-gray-900">{{ title }} - Cost Estimation Report</h1>
+      <p class="text-gray-600 mt-2">Generated on {{ date | date:'fullDate' }}</p>
+    </div>
+
+    <!-- Content Area -->
+    <div class="p-8 space-y-8" @fadeIn>
+      <!-- Architecture Selection -->
+      <section id="architecture" class="fade-in">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+            <span class="text-blue-600 font-bold text-lg">1</span>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900">Select Architecture Pattern</h2>
+            <p class="text-gray-600">Choose the infrastructure architecture that best fits your needs</p>
+          </div>
+        </div>
+        <app-architecture-selector (architectureSelected)="onArchitectureSelected($event)"></app-architecture-selector>
+      </section>
+
+      <!-- Traffic & Cost Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Traffic Input -->
+        <section id="traffic" class="lg:col-span-1 slide-in">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center">
+              <span class="text-cyan-600 font-bold text-lg">2</span>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-gray-900">Traffic & Scale</h2>
+              <p class="text-sm text-gray-600">Define your traffic metrics</p>
+            </div>
+          </div>
+          <app-traffic-input (trafficChanged)="onTrafficChanged($event)"></app-traffic-input>
+        </section>
+
+        <!-- Cost Analysis -->
+        <section id="costs" class="lg:col-span-2 slide-in">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+              <span class="text-green-600 font-bold text-lg">3</span>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-gray-900">Cost Projection</h2>
+              <p class="text-sm text-gray-600">Real-time infrastructure cost estimates</p>
+            </div>
+          </div>
+
+          <!-- Loading State -->
+          <div *ngIf="loading" class="flex flex-col items-center justify-center py-20">
+            <div class="relative">
+              <div class="w-16 h-16 border-4 border-blue-200 rounded-full"></div>
+              <div
+                class="w-16 h-16 border-4 border-blue-600 rounded-full absolute top-0 left-0 animate-spin border-t-transparent">
+              </div>
+            </div>
+            <p class="mt-6 text-gray-600 font-medium">Calculating infrastructure costs...</p>
+          </div>
+
+          <!-- Error State -->
+          <div *ngIf="error" class="bg-red-50 border-l-4 border-red-500 px-6 py-4 rounded-lg">
+            <div class="flex items-center gap-3">
+              <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <p class="text-red-700 font-medium">{{ error }}</p>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div *ngIf="estimationResult && !loading" class="space-y-6">
+            <app-cost-dashboard [result]="estimationResult" [currency]="selectedCurrency"></app-cost-dashboard>
+            <app-multi-cloud-table [result]="estimationResult" [currency]="selectedCurrency"></app-multi-cloud-table>
+            <app-scaling-scenarios [result]="estimationResult" [currency]="selectedCurrency"></app-scaling-scenarios>
+          </div>
+          <div class="min-h-screen bg-gray-50 flex">
+            <!-- Sidebar -->
+            <aside class="w-64 bg-white shadow-lg fixed h-full z-10 print:hidden">
+              <div class="p-6 border-b border-gray-200">
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                  {{ title }}
+                </h1>
+                <p class="text-xs text-gray-500 mt-1">Cloud Cost Estimator</p>
+              </div>
+
+              <nav class="p-4">
+                <div class="space-y-1">
+                  <a href="#architecture"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all group">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                      </path>
+                    </svg>
+                    <span class="font-medium">Architecture</span>
+                  </a>
+
+                  <a href="#traffic"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6">
+                      </path>
+                    </svg>
+                    <span class="font-medium">Traffic & Scale</span>
+                  </a>
+
+                  <a href="#costs"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                      </path>
+                    </svg>
+                    <span class="font-medium">Cost Analysis</span>
+                  </a>
+
+                  <a href="#optimization"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span class="font-medium">Optimization</span>
+                  </a>
+                </div>
+              </nav>
+
+              <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
+                <app-currency-selector [selectedCurrency]="selectedCurrency"
+                  (currencyChanged)="onCurrencyChanged($event)"></app-currency-selector>
+              </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="flex-1 ml-64 print:ml-0">
+              <!-- Top Bar -->
+              <header class="bg-white shadow-sm sticky top-0 z-10 print:hidden">
+                <div class="px-8 py-4 flex justify-between items-center">
+                  <div class="flex-1">
+                    <h2 class="text-xl font-semibold text-gray-800">Infrastructure Cost Estimation</h2>
+                    <p class="text-sm text-gray-500">{{ date | date:'medium' }}</p>
+                  </div>
+
+                  <div class="flex gap-3">
+                    <button (click)="exportToCsv()"
+                      class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium shadow-sm hover:shadow-md transition-all flex items-center gap-2">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                        </path>
+                      </svg>
+                      <span>Export CSV</span>
+                    </button>
+                    <button (click)="exportPdf()"
+                      class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium shadow-sm hover:shadow-md transition-all flex items-center gap-2">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z">
+                        </path>
+                      </svg>
+                      <span>Export PDF</span>
+                    </button>
+                  </div>
+                </div>
+              </header>
+
+              <!-- Print Header -->
+              <div class="hidden print:block px-8 py-6 border-b">
+                <h1 class="text-3xl font-bold text-gray-900">{{ title }} - Cost Estimation Report</h1>
+                <p class="text-gray-600 mt-2">Generated on {{ date | date:'fullDate' }}</p>
+              </div>
+
+              <!-- Content Area -->
+              <div class="p-8 space-y-8" @fadeIn>
+                <!-- Architecture Selection -->
+                <section id="architecture" class="fade-in">
+                  <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <span class="text-blue-600 font-bold text-lg">1</span>
+                    </div>
+                    <div>
+                      <h2 class="text-2xl font-bold text-gray-900">Select Architecture Pattern</h2>
+                      <p class="text-gray-600">Choose the infrastructure architecture that best fits your needs</p>
+                    </div>
+                  </div>
+                  <app-architecture-selector
+                    (architectureSelected)="onArchitectureSelected($event)"></app-architecture-selector>
+                </section>
+
+                <!-- Traffic & Cost Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  <!-- Traffic Input -->
+                  <section id="traffic" class="lg:col-span-1 slide-in">
+                    <div class="flex items-center gap-3 mb-6">
+                      <div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center">
+                        <span class="text-cyan-600 font-bold text-lg">2</span>
+                      </div>
+                      <div>
+                        <h2 class="text-xl font-bold text-gray-900">Traffic & Scale</h2>
+                        <p class="text-sm text-gray-600">Define your traffic metrics</p>
+                      </div>
+                    </div>
+                    <app-traffic-input (trafficChanged)="onTrafficChanged($event)"></app-traffic-input>
+                  </section>
+
+                  <!-- Cost Analysis -->
+                  <section id="costs" class="lg:col-span-2 slide-in">
+                    <div class="flex items-center gap-3 mb-6">
+                      <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                        <span class="text-green-600 font-bold text-lg">3</span>
+                      </div>
+                      <div>
+                        <h2 class="text-xl font-bold text-gray-900">Cost Projection</h2>
+                        <p class="text-sm text-gray-600">Real-time infrastructure cost estimates</p>
+                      </div>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div *ngIf="loading" class="flex flex-col items-center justify-center py-20">
+                      <div class="relative">
+                        <div class="w-16 h-16 border-4 border-blue-200 rounded-full"></div>
+                        <div
+                          class="w-16 h-16 border-4 border-blue-600 rounded-full absolute top-0 left-0 animate-spin border-t-transparent">
+                        </div>
+                      </div>
+                      <p class="mt-6 text-gray-600 font-medium">Calculating infrastructure costs...</p>
+                    </div>
+
+                    <!-- Error State -->
+                    <div *ngIf="error" class="bg-red-50 border-l-4 border-red-500 px-6 py-4 rounded-lg">
+                      <div class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <p class="text-red-700 font-medium">{{ error }}</p>
+                      </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div *ngIf="estimationResult && !loading" class="space-y-6">
+                      <app-cost-dashboard [result]="estimationResult"
+                        [currency]="selectedCurrency"></app-cost-dashboard>
+                      <app-multi-cloud-table [result]="estimationResult"
+                        [currency]="selectedCurrency"></app-multi-cloud-table>
+                      <app-scaling-scenarios [result]="estimationResult"
+                        [currency]="selectedCurrency"></app-scaling-scenarios>
+                    </div>
+                  </section>
+                </div>
+
+                <!-- Optimization & Business Metrics -->
+                <div id="optimization" class="grid grid-cols-1 lg:grid-cols-2 gap-8 fade-in">
+                  <app-optimization-tips *ngIf="estimationResult" [result]="estimationResult"></app-optimization-tips>
+                  <app-business-metrics *ngIf="estimationResult" [result]="estimationResult"
+                    [currency]="selectedCurrency"></app-business-metrics>
+                </div>
+              </div>
+            </main>
+          </div>

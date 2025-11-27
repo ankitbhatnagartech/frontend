@@ -1,0 +1,14 @@
+<div *ngIf="result && result.business_metrics && (result.business_metrics | keyvalue).length > 0"
+    class="bg-white p-6 rounded-lg shadow-md mt-6 border-l-4 border-purple-500">
+    <h2 class="text-xl font-bold mb-4 text-purple-800" i18n>Business Viability</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div *ngFor="let item of result.business_metrics | keyvalue" class="text-center p-4 bg-purple-50 rounded-lg">
+            <div class="text-sm text-gray-600 uppercase tracking-wide mb-1">{{item.key}}</div>
+            <div class="text-2xl font-bold text-purple-900">
+                <span
+                    *ngIf="item.key.toLowerCase().includes('revenue') || item.key.toLowerCase().includes('cost') || item.key.toLowerCase().includes('monthly')">{{getCurrencySymbol()}}</span>
+                {{item.value}}
+            </div>
+        </div>
+    </div>
+</div>
