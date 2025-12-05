@@ -1,0 +1,41 @@
+<div class="bg-white p-4 rounded-lg border border-gray-200 space-y-4">
+  <h3 class="font-semibold text-gray-800 flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+    </svg>
+    CDN & Edge Computing
+  </h3>
+
+  <div class="flex items-center">
+    <input type="checkbox" [(ngModel)]="config.enabled" (change)="onChange()" id="cdn-enable" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+    <label for="cdn-enable" class="ml-3 text-sm font-medium text-gray-700">Enable CDN</label>
+  </div>
+
+  <div *ngIf="config.enabled" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2">CDN Provider</label>
+      <select [(ngModel)]="config.provider" (change)="onChange()" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500 text-sm">
+        <option *ngFor="let provider of providers" [value]="provider">{{ provider | uppercase }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2">Data Transfer (GB/month)</label>
+      <input type="number" min="0" step="10" [(ngModel)]="config.data_transfer_gb" (change)="onChange()" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500 text-sm">
+    </div>
+
+    <div class="flex items-center">
+      <input type="checkbox" [(ngModel)]="config.edge_functions" (change)="onChange()" id="edge-func" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+      <label for="edge-func" class="ml-3 text-sm font-medium text-gray-700">Edge Functions (Lambda@Edge)</label>
+    </div>
+
+    <div class="flex items-center">
+      <input type="checkbox" [(ngModel)]="config.video_streaming" (change)="onChange()" id="video" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+      <label for="video" class="ml-3 text-sm font-medium text-gray-700">Video Streaming Optimization</label>
+    </div>
+  </div>
+
+  <div class="bg-green-50 border-l-4 border-green-500 p-3 rounded text-sm text-green-700">
+    <p><strong>Tip:</strong> CDN reduces latency by caching content at edge locations. Edge functions enable custom logic at the CDN edge.</p>
+  </div>
+</div>

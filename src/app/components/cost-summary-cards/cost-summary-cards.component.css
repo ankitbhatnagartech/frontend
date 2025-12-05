@@ -1,0 +1,19 @@
+.card-gradient {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card-gradient-blue {
+    background: linear-gradient(135deg, rgba(219, 234, 254, 0.8) 0%, rgba(191, 219, 254, 0.4) 100%);
+    border-left: 4px solid #2563eb;
+}
+
+.card-gradient-green {
+    background: linear-gradient(135deg, rgba(220, 252, 231, 0.8) 0%, rgba(187, 247, 208, 0.4) 100%);
+    border-left: 4px solid #16a34a;
+}
+
+.card-gradient-purple {
+    background: linear-gradient(135deg, rgba(237, 233, 254, 0.8) 0%, rgba(221, 214, 254, 0.4) 100%);
+    border-left: 4px solid #9333ea;
+}

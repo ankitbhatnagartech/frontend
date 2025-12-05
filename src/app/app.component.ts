@@ -1,39 +1,110 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { trigger, transition, style, animate } from '@angular/animations';
-import { ArchitectureSelectorComponent } from './components/architecture-selector/architecture-selector.component';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import {
+  EstimationService,
+  TrafficInput,
+  ArchitectureType,
+  EstimationResult,
+  PricingStatus,
+  DatabaseConfig,
+  CDNConfig,
+  MessageQueueConfig,
+  SecurityConfig,
+  MonitoringConfig,
+  CICDConfig,
+  MultiRegionConfig
+} from './services/estimation.service';
 import { TrafficInputComponent } from './components/traffic-input/traffic-input.component';
-import { CostDashboardComponent } from './components/cost-dashboard/cost-dashboard.component';
-import { CurrencySelectorComponent } from './components/currency-selector/currency-selector.component';
-import { MultiCloudTableComponent } from './components/multi-cloud-table/multi-cloud-table.component';
-import { ScalingScenariosComponent } from './components/scaling-scenarios/scaling-scenarios.component';
-import { OptimizationTipsComponent } from './components/optimization-tips/optimization-tips.component';
 import { BusinessMetricsComponent } from './components/business-metrics/business-metrics.component';
-import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
-import { EstimationService, ArchitectureType, TrafficInput, EstimationResult } from './services/estimation.service';
+import { AdvancedConfigComponent } from './components/advanced-config/advanced-config.component';
+import { CostSummaryCardsComponent } from './components/cost-summary-cards/cost-summary-cards.component';
+import { CostChartComponent } from './components/cost-chart/cost-chart.component';
+import { ExportService } from './services/export.service';
+
+const defaultDatabase: DatabaseConfig = {
+  type: 'rds',
+  read_replicas: 0,
+  backup_enabled: false,
+  multi_az: false,
+  cache_type: undefined,
+  cache_size_gb: 0
+};
+
+const defaultCDN: CDNConfig = {
+  enabled: false,
+  provider: 'cloudfront',
+  data_transfer_gb: 0,
+  edge_functions: false,
+  video_streaming: false
+};
+
+const defaultMessaging: MessageQueueConfig = {
+  enabled: false,
+  type: 'sqs',
+  messages_per_day: 0,
+  retention_days: 7,
+  dlq_enabled: false
+};
+
+const defaultSecurity: SecurityConfig = {
+  waf_enabled: false,
+  vpn_enabled: false,
+  ddos_protection: false,
+  ssl_certificates: 0,
+  compliance: [],
+  secrets_manager: false
+};
+
+const defaultMonitoring: MonitoringConfig = {
+  provider: 'cloudwatch',
+  log_retention_days: 7,
+  apm_enabled: false,
+  distributed_tracing: false,
+  alert_channels: 0
+};
+
+const defaultCICD: CICDConfig = {
+  provider: 'github_actions',
+  builds_per_month: 100,
+  container_registry: false,
+  security_scanning: false,
+  artifact_storage_gb: 0
+};
+
+const defaultMultiRegion: MultiRegionConfig = {
+  enabled: false,
+  regions: 1,
+  replication_type: 'active_passive',
+  cross_region_transfer_gb: 0,
+  rto_minutes: 60,
+  rpo_minutes: 60
+};
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, ArchitectureSelectorComponent, TrafficInputComponent, CostDashboardComponent, CurrencySelectorComponent, LanguageSelectorComponent, MultiCloudTableComponent, ScalingScenariosComponent, OptimizationTipsComponent, BusinessMetricsComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    TrafficInputComponent,
+    BusinessMetricsComponent,
+    AdvancedConfigComponent,
+    CostSummaryCardsComponent,
+    CostChartComponent
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  animations: [
-    trigger('fadeIn', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(10px)' }),
-        animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
-      ])
-    ])
-  ]
+  styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ArchCost';
-  date = new Date();
 
-  selectedArchitecture: ArchitectureType = ArchitectureType.MONOLITH;
-  selectedCurrency: string = 'INR';
+  selectedArchitecture: ArchitectureType = 'serverless';
+  selectedCurrency: string = 'USD';
+  selectedProvider: string = 'AWS';
+  cloudProviders: Array<{ name: string; multiplier: number; category: string }> = [];
+
   traffic: TrafficInput = {
     daily_active_users: 10000,
     api_requests_per_user: 50,
@@ -41,91 +112,177 @@ export class AppComponent {
     peak_traffic_multiplier: 1.5,
     growth_rate_yoy: 0.2,
     revenue_per_user_monthly: 0,
-    funding_available: 0
+    funding_available: 0,
+    database: defaultDatabase,
+    cdn: defaultCDN,
+    messaging: defaultMessaging,
+    security: defaultSecurity,
+    monitoring: defaultMonitoring,
+    cicd: defaultCICD,
+    multi_region: defaultMultiRegion
   };
 
   estimationResult: EstimationResult | null = null;
-  loading = false;
-  error: string | null = null;
+  pricingStatus: PricingStatus | null = null;
+  isLoading: boolean = false;
+  shareUrlCopied: boolean = false;
 
-  constructor(private estimationService: EstimationService) { }
+  constructor(
+    private estimationService: EstimationService,
+    private route: ActivatedRoute,
+    private exportService: ExportService
+  ) { }
 
   ngOnInit() {
-    // Initial calculation
+    this.loadCloudProviders();
+    this.loadFromUrl();
+    this.loadPricingStatus();
     this.calculateCost();
   }
 
-  onArchitectureSelected(type: ArchitectureType) {
-    this.selectedArchitecture = type;
-    this.calculateCost();
+  loadPricingStatus() {
+    this.estimationService.getPricingStatus().subscribe(status => {
+      this.pricingStatus = status;
+    });
   }
 
-  onTrafficChanged(traffic: TrafficInput) {
-    this.traffic = traffic;
-    this.calculateCost();
-  }
-
-  onCurrencyChanged(currency: string) {
-    this.selectedCurrency = currency;
-    this.calculateCost();
+  loadCloudProviders() {
+    this.estimationService.getCloudProviders().subscribe(response => {
+      this.cloudProviders = response.providers;
+    });
   }
 
   calculateCost() {
-    if (!this.selectedArchitecture) return;
+    this.isLoading = true;
+    this.estimationService.estimate(this.traffic, this.selectedArchitecture, this.selectedCurrency)
+      .subscribe({
+        next: (result) => {
+          this.estimationResult = result;
+          this.isLoading = false;
+        },
+        error: (err) => {
+          console.error('Error calculating cost:', err);
+          this.isLoading = false;
+        }
+      });
+  }
 
-    this.loading = true;
-    this.error = null;
+  onTrafficChange(newTraffic: TrafficInput) {
+    this.traffic = newTraffic;
+    this.calculateCost();
+  }
 
-    this.estimationService.estimate(this.selectedArchitecture, this.traffic, this.selectedCurrency).subscribe({
-      next: (result) => {
-        this.estimationResult = result;
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('Error calculating cost:', err);
-        this.error = 'Failed to calculate costs. Please try again.';
-        this.loading = false;
+  generateShareUrl() {
+    const params = new URLSearchParams();
+    params.set('arch', this.selectedArchitecture);
+    params.set('provider', this.selectedProvider);
+    params.set('dau', this.traffic.daily_active_users.toString());
+    params.set('api', this.traffic.api_requests_per_user.toString());
+    params.set('storage', this.traffic.storage_per_user_mb.toString());
+    params.set('growth', this.traffic.growth_rate_yoy.toString());
+    params.set('revenue', this.traffic.revenue_per_user_monthly.toString());
+    params.set('funding', this.traffic.funding_available.toString());
+    params.set('currency', this.selectedCurrency);
+
+    const url = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+
+    navigator.clipboard.writeText(url).then(() => {
+      this.shareUrlCopied = true;
+      setTimeout(() => {
+        this.shareUrlCopied = false;
+      }, 3000);
+    });
+  }
+
+  loadFromUrl() {
+    this.route.queryParams.subscribe(params => {
+      if (params['arch']) {
+        this.selectedArchitecture = params['arch'] as ArchitectureType;
+      }
+      if (params['provider']) {
+        this.selectedProvider = params['provider'];
+      }
+      if (params['dau']) {
+        this.traffic.daily_active_users = Number(params['dau']);
+      }
+      if (params['api']) {
+        this.traffic.api_requests_per_user = Number(params['api']);
+      }
+      if (params['storage']) {
+        this.traffic.storage_per_user_mb = Number(params['storage']);
+      }
+      if (params['growth']) {
+        this.traffic.growth_rate_yoy = Number(params['growth']);
+      }
+      if (params['revenue']) {
+        this.traffic.revenue_per_user_monthly = Number(params['revenue']);
+      }
+      if (params['funding']) {
+        this.traffic.funding_available = Number(params['funding']);
+      }
+      if (params['currency']) {
+        this.selectedCurrency = params['currency'];
       }
     });
   }
 
-  exportPdf() {
-    window.print();
+  getProviderData(provider: string): number | null {
+    return this.estimationResult?.multi_cloud_costs?.[provider] || null;
   }
 
-  exportToCsv() {
-    if (!this.estimationResult) return;
+  getBestProvider(): string | null {
+    if (!this.estimationResult?.multi_cloud_costs) return null;
+    const costs = Object.entries(this.estimationResult.multi_cloud_costs);
+    return costs.length > 0 ? costs.reduce((best, curr) => curr[1] < best[1] ? curr : best)[0] : null;
+  }
 
-    const result = this.estimationResult;
-    const rows = [
-      ['Category', 'Value'],
-      ['Architecture', result.architecture],
-      ['Daily Active Users', result.traffic_input.daily_active_users],
-      ['Monthly Cost (' + this.selectedCurrency + ')', result.monthly_cost.total.toFixed(2)],
-      ['Yearly Cost (' + this.selectedCurrency + ')', result.yearly_cost.toFixed(2)],
-      [],
-      ['Cost Breakdown', ''],
-      ['Compute', result.monthly_cost.compute.toFixed(2)],
-      ['Database', result.monthly_cost.database.toFixed(2)],
-      ['Storage', result.monthly_cost.storage.toFixed(2)],
-      ['Networking', result.monthly_cost.networking.toFixed(2)],
-      [],
-      ['Multi-Cloud Comparison', ''],
-      ...Object.entries(result.multi_cloud_costs).map(([k, v]) => [k, v.toFixed(2)]),
-      [],
-      ['Business Metrics', ''],
-      ...Object.entries(result.business_metrics || {}).map(([k, v]) => [k, v])
-    ];
+  downloadPDF() {
+    if (this.estimationResult) {
+      this.exportService.exportToPDF(this.estimationResult, this.selectedArchitecture, this.selectedCurrency);
+    }
+  }
 
-    const csvContent = "data:text/csv;charset=utf-8,"
-      + rows.map(e => e.join(",")).join("\n");
+  downloadCSV() {
+    if (this.estimationResult) {
+      this.exportService.exportToCSV(this.estimationResult, this.selectedArchitecture, this.selectedCurrency);
+    }
+  }
 
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "archcost_estimation.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  getProvidersList(): Array<{ provider: string; cost: number; multiplier: number; category: string }> {
+    if (!this.estimationResult?.multi_cloud_costs) return [];
+
+    return Object.entries(this.estimationResult.multi_cloud_costs).map(([provider, cost]) => {
+      const providerInfo = this.cloudProviders.find(p => p.name === provider);
+      return {
+        provider,
+        cost: cost as number,
+        multiplier: providerInfo?.multiplier || 1.0,
+        category: providerInfo?.category || 'Other'
+      };
+    }).sort((a, b) => a.cost - b.cost); // Sort by cost, cheapest first
+  }
+
+  getInfrastructureList(): Array<{ key: string; value: string }> {
+    if (!this.estimationResult?.infrastructure_requirements) return [];
+    return Object.entries(this.estimationResult.infrastructure_requirements).map(([key, value]) => ({
+      key: key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+      value: value as string
+    }));
+  }
+
+  getYearProjections(): Array<{ year: string; cost: number }> {
+    if (!this.estimationResult?.three_year_projection) return [];
+    return Object.entries(this.estimationResult.three_year_projection).map(([year, cost]) => ({
+      year: year.replace('year_', 'Year '),
+      cost: cost as number
+    }));
+  }
+
+  getBusinessMetrics(): Array<{ key: string; value: string }> {
+    if (!this.estimationResult?.business_metrics) return [];
+    return Object.entries(this.estimationResult.business_metrics).map(([key, value]) => ({
+      key: key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+      value: value as string
+    }));
   }
 }

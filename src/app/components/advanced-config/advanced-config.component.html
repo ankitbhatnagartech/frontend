@@ -1,0 +1,100 @@
+<div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+    <button (click)="toggleExpand()"
+        class="w-full flex justify-between items-center text-lg font-semibold text-gray-800 focus:outline-none">
+        <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-600" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Advanced Configuration
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-transform duration-200"
+            [class.rotate-180]="isExpanded" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+    </button>
+
+    <div *ngIf="isExpanded" class="mt-6 space-y-4">
+        <!-- Search Filter -->
+        <div class="relative mb-4">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+            <input type="text" [(ngModel)]="filterText" (ngModelChange)="onFilterChange()"
+                placeholder="Search configuration (e.g., 'database', 'security', 'cdn')..."
+                class="w-full pl-10 p-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500">
+            <div *ngIf="filterText" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                <span class="text-xs text-gray-500">
+                    Showing {{filteredSections.size > 0 ? filteredSections.size : (showSection('database') ? 7 : 0)}} of
+                    7
+                </span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Database -->
+            <div *ngIf="showSection('database')"
+                class="flex items-center p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                <input type="checkbox" [(ngModel)]="traffic.database" (change)="onChange()" id="db"
+                    class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                <label for="db" class="ml-3 block text-sm font-medium text-gray-700">Managed Database</label>
+            </div>
+
+            <!-- CDN -->
+            <div *ngIf="showSection('cdn')"
+                class="flex items-center p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                <input type="checkbox" [(ngModel)]="traffic.cdn" (change)="onChange()" id="cdn"
+                    class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                <label for="cdn" class="ml-3 block text-sm font-medium text-gray-700">Content Delivery Network</label>
+            </div>
+
+            <!-- Messaging -->
+            <div *ngIf="showSection('messaging')"
+                class="flex items-center p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                <input type="checkbox" [(ngModel)]="traffic.messaging" (change)="onChange()" id="msg"
+                    class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                <label for="msg" class="ml-3 block text-sm font-medium text-gray-700">Messaging / Queues</label>
+            </div>
+
+            <!-- Security -->
+            <div *ngIf="showSection('security')"
+                class="flex items-center p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                <input type="checkbox" [(ngModel)]="traffic.security" (change)="onChange()" id="sec"
+                    class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                <label for="sec" class="ml-3 block text-sm font-medium text-gray-700">Advanced Security (WAF)</label>
+            </div>
+
+            <!-- Monitoring -->
+            <div *ngIf="showSection('monitoring')"
+                class="flex items-center p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                <input type="checkbox" [(ngModel)]="traffic.monitoring" (change)="onChange()" id="mon"
+                    class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                <label for="mon" class="ml-3 block text-sm font-medium text-gray-700">Enhanced Monitoring</label>
+            </div>
+
+            <!-- CI/CD -->
+            <div *ngIf="showSection('cicd')"
+                class="flex items-center p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                <input type="checkbox" [(ngModel)]="traffic.cicd" (change)="onChange()" id="cicd"
+                    class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                <label for="cicd" class="ml-3 block text-sm font-medium text-gray-700">CI/CD Pipeline</label>
+            </div>
+
+            <!-- Multi-Region -->
+            <div *ngIf="showSection('multi_region')"
+                class="flex items-center p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                <input type="checkbox" [(ngModel)]="traffic.multi_region" (change)="onChange()" id="mr"
+                    class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                <label for="mr" class="ml-3 block text-sm font-medium text-gray-700">Multi-Region Setup</label>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,26 @@
-/* Business Metrics Styles */
+/* Business Metrics Component Styles */
+
+:host {
+  display: block;
+}
+
+/* Remove spinner from number inputs */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Currency input styling */
+.relative input {
+  padding-left: 1.75rem;
+}
+
+/* Ensure proper input field appearance */
+input:focus {
+  box-shadow: none;
+}

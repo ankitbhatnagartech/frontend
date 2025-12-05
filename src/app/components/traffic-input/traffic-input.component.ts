@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TrafficInput } from '../../services/estimation.service';
@@ -11,19 +11,10 @@ import { TrafficInput } from '../../services/estimation.service';
   styleUrl: './traffic-input.component.css'
 })
 export class TrafficInputComponent {
-  @Output() trafficChanged = new EventEmitter<TrafficInput>();
+  @Input() traffic!: TrafficInput;
+  @Output() trafficChange = new EventEmitter<TrafficInput>();
 
-  traffic: TrafficInput = {
-    daily_active_users: 1000,
-    api_requests_per_user: 50,
-    storage_per_user_mb: 0.1,
-    peak_traffic_multiplier: 1.5,
-    growth_rate_yoy: 0.2,
-    revenue_per_user_monthly: 0,
-    funding_available: 0
-  };
-
-  emitChange() {
-    this.trafficChanged.emit(this.traffic);
+  onChange() {
+    this.trafficChange.emit(this.traffic);
   }
 }
