@@ -1,18 +1,14 @@
 <div class="min-h-screen bg-gray-50 font-sans text-gray-900">
-  <!-- Header -->
   <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3 flex justify-between items-center gap-3 sm:gap-4">
-      <div class="flex items-center gap-2 sm:gap-3">
-        <div class="bg-blue-600 text-white p-1.5 sm:p-2 rounded-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-          </svg>
+      <div class="flex items-center gap-2.5 sm:gap-3 md:gap-4">
+        <div class="relative">
+          <img src="../../assets/ArchCostEstimator_Logo.png" alt="ArchCostEstimator"
+            class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain rounded-lg p-0.01 bg-white">
         </div>
         <h1
-          class="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-          ArchCost
+          class="text-xl sm:text-2xl md:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 tracking-tight leading-tight">
+          ArchCostEstimator
         </h1>
       </div>
 
@@ -57,11 +53,23 @@
 
         <button (click)="downloadPDF()"
           class="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors font-medium text-xs sm:text-sm">
+          <svg class="h-3.5 w-3.5 sm:h-4 sm:w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+            stroke="currentColor" stroke-width="2">
+            <path d="M12 3v9" stroke-linecap="round" />
+            <path d="M7 11l5 5 5-5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M4 20h16" stroke-linecap="round" />
+          </svg>
           <span>PDF</span>
         </button>
 
         <button (click)="downloadCSV()"
           class="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 bg-purple-50 text-purple-600 rounded-lg hover:bg-purple-100 transition-colors font-medium text-xs sm:text-sm">
+          <svg class="h-3.5 w-3.5 sm:h-4 sm:w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+            stroke="currentColor" stroke-width="2">
+            <path d="M12 3v9" stroke-linecap="round" />
+            <path d="M7 11l5 5 5-5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M4 20h16" stroke-linecap="round" />
+          </svg>
           <span>CSV</span>
         </button>
 
@@ -168,7 +176,8 @@
 
           <!-- Multi-Cloud Comparison -->
           <div class="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100">
-            <h3 class="text-base md:text-lg font-semibold mb-4 md:mb-6 text-gray-800">Cloud Provider Comparison (17 Providers)</h3>
+            <h3 class="text-base md:text-lg font-semibold mb-4 md:mb-6 text-gray-800">Cloud Provider Comparison (17
+              Providers)</h3>
             <div class="space-y-2 md:space-y-3">
               <div *ngFor="let item of getProvidersList()"
                 class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 md:p-4 rounded-lg border transition-all gap-2 sm:gap-4"
@@ -195,7 +204,8 @@
           </div>
 
           <!-- Infrastructure Requirements -->
-          <div *ngIf="getInfrastructureList().length > 0" class="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100">
+          <div *ngIf="getInfrastructureList().length > 0"
+            class="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100">
             <h3 class="text-base md:text-lg font-semibold mb-4 text-gray-800">🏗️ Infrastructure Requirements</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div *ngFor="let req of getInfrastructureList()" class="border-l-4 border-blue-500 pl-3 py-2 bg-blue-50">
@@ -206,10 +216,13 @@
           </div>
 
           <!-- Optimization Suggestions -->
-          <div *ngIf="estimationResult?.optimization_suggestions && estimationResult.optimization_suggestions.length > 0" class="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100">
+          <div
+            *ngIf="estimationResult?.optimization_suggestions && estimationResult.optimization_suggestions.length > 0"
+            class="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100">
             <h3 class="text-base md:text-lg font-semibold mb-4 text-gray-800">💡 Cost Optimization Opportunities</h3>
             <div class="space-y-3">
-              <div *ngFor="let opt of estimationResult.optimization_suggestions" class="border-l-4 border-green-500 pl-4 py-3 bg-green-50 rounded-r-lg">
+              <div *ngFor="let opt of estimationResult.optimization_suggestions"
+                class="border-l-4 border-green-500 pl-4 py-3 bg-green-50 rounded-r-lg">
                 <div class="font-semibold text-gray-900">{{opt.title}}</div>
                 <div class="text-sm text-gray-600 mt-1">{{opt.description}}</div>
                 <div class="text-sm font-bold text-green-600 mt-2">💰 Potential Savings: {{opt.saving}}</div>
@@ -218,10 +231,12 @@
           </div>
 
           <!-- 3-Year Scaling Roadmap -->
-          <div *ngIf="getYearProjections().length > 0" class="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100">
+          <div *ngIf="getYearProjections().length > 0"
+            class="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100">
             <h3 class="text-base md:text-lg font-semibold mb-4 text-gray-800">📈 3-Year Scaling Roadmap</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div *ngFor="let year of getYearProjections()" class="text-center p-6 bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg border-2 border-blue-200">
+              <div *ngFor="let year of getYearProjections()"
+                class="text-center p-6 bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg border-2 border-blue-200">
                 <div class="text-sm font-medium text-gray-600 mb-2">{{year.year}}</div>
                 <div class="text-3xl font-bold text-blue-600">{{selectedCurrency}} {{year.cost | number:'1.0-0'}}</div>
                 <div class="text-xs text-gray-500 mt-2">Annual Cost Projection</div>
@@ -230,10 +245,12 @@
           </div>
 
           <!-- Business Viability -->
-          <div *ngIf="getBusinessMetrics().length > 0" class="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100">
+          <div *ngIf="getBusinessMetrics().length > 0"
+            class="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100">
             <h3 class="text-base md:text-lg font-semibold mb-4 text-gray-800">💼 Business Viability Analysis</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div *ngFor="let metric of getBusinessMetrics()" class="p-4 border-2 border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-all">
+              <div *ngFor="let metric of getBusinessMetrics()"
+                class="p-4 border-2 border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-all">
                 <div class="text-xs text-gray-500 uppercase tracking-wide font-medium">{{metric.key}}</div>
                 <div class="text-lg font-bold text-gray-900 mt-2">{{metric.value}}</div>
               </div>
@@ -248,7 +265,7 @@
   <footer class="bg-white border-t border-gray-200 mt-8 md:mt-12 py-4 md:py-8">
     <div
       class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
-      <p class="text-gray-500 text-xs md:text-sm">© 2024 ArchCost. Open source architecture cost estimator.</p>
+      <p class="text-gray-500 text-xs md:text-sm">© 2025 ArchCostEstimator. All rights reserved.</p>
 
       <div *ngIf="pricingStatus"
         class="flex items-center gap-2 px-2 md:px-3 py-1 md:py-1.5 bg-gray-50 rounded-full border border-gray-200">
@@ -259,7 +276,7 @@
           {{pricingStatus.using_database ? 'Live Pricing' : 'Default Pricing'}}
         </span>
         <span class="text-xs text-gray-400 border-l border-gray-300 pl-2">
-          {{pricingStatus.last_updated | date:'shortDate'}}
+          {{pricingStatus.last_updated | date:'medium'}}
         </span>
       </div>
     </div>

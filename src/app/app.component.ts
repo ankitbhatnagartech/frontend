@@ -98,7 +98,7 @@ const defaultMultiRegion: MultiRegionConfig = {
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  title = 'ArchCost';
+  title = 'ArchCostEstimator';
 
   selectedArchitecture: ArchitectureType = 'serverless';
   selectedCurrency: string = 'USD';

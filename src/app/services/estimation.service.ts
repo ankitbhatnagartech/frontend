@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
@@ -127,8 +127,26 @@ export interface CloudProvider {
 })
 export class EstimationService {
   private apiUrl = environment.apiUrl || 'http://localhost:8000';
+  
+  // Client-side ETag cache: store {payloadHash → {etag, result, timestamp}}
+  private etagCache: Map<string, { etag: string; result: EstimationResult; timestamp: number }> = new Map();
+  private cacheMaxAge = 24 * 60 * 60 * 1000; // 24 hours TTL
 
   constructor(private http: HttpClient) { }
+
+  /**
+   * Generate a simple hash of the payload to use as cache key
+   */
+  private hashPayload(obj: any): string {
+    const json = JSON.stringify(obj, Object.keys(obj).sort());
+    let hash = 0;
+    for (let i = 0; i < json.length; i++) {
+      const char = json.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32bit integer
+    }
+    return 'cache_' + Math.abs(hash).toString(16);
+  }
 
   estimate(traffic: TrafficInput, architecture: ArchitectureType, currency: string): Observable<EstimationResult> {
     const payload = {
@@ -136,7 +154,89 @@ export class EstimationService {
       architecture,
       currency
     };
-    return this.http.post<EstimationResult>(`${this.apiUrl}/estimate`, payload);
+    
+    const payloadHash = this.hashPayload(payload);
+    const cached = this.etagCache.get(payloadHash);
+    
+    // Check if we have a valid cached entry
+    if (cached && (Date.now() - cached.timestamp) < this.cacheMaxAge) {
+      // Build headers with If-None-Match to validate cache with server
+      const headers = new HttpHeaders({
+        'If-None-Match': cached.etag
+      });
+
+      return this.http.post<EstimationResult>(
+        `${this.apiUrl}/estimate`,
+        payload,
+        { headers }
+      ).pipe(
+        // Handle 304 by returning cached result
+        catchError((error: any) => {
+          // 304 is treated as error by HttpClient, so we catch and return cached
+          if (error.status === 304) {
+            console.log('ETag matched; using cached result');
+            return of(cached.result);
+          }
+          throw error;
+        }),
+        // On successful 200, update cache with new ETag and return result
+        map((result: EstimationResult) => {
+          const etag = this.extractETag(result);
+          if (etag) {
+            this.etagCache.set(payloadHash, {
+              etag,
+              result,
+              timestamp: Date.now()
+            });
+          }
+          return result;
+        })
+      );
+    } else {
+      // No cached entry; make fresh request
+      return this.http.post<EstimationResult>(
+        `${this.apiUrl}/estimate`,
+        payload
+      ).pipe(
+        map((result: EstimationResult) => {
+          // Store the ETag from response headers
+          const etag = this.extractETag(result);
+          if (etag) {
+            this.etagCache.set(payloadHash, {
+              etag,
+              result,
+              timestamp: Date.now()
+            });
+          }
+          return result;
+        })
+      );
+    }
+  }
+
+  /**
+   * Extract ETag from HttpResponse headers (would be done via HttpObserve.response)
+   * For now, we'll rely on the X-Cache-Key header if available in response body metadata
+   * Note: To properly get ETag from response, modify the estimate call to observe: 'response'
+   */
+  private extractETag(result: any): string {
+    // Placeholder: In a production setup, you'd modify the endpoint to return response headers
+    // For now, we generate a simple hash-based pseudo-ETag from the result
+    const resultJson = JSON.stringify(result);
+    return this.generateSimpleHash(resultJson);
+  }
+
+  /**
+   * Simple hash function for result serialization
+   */
+  private generateSimpleHash(str: string): string {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+    return Math.abs(hash).toString(16);
   }
 
   getPricingStatus(): Observable<PricingStatus> {
