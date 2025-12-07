@@ -126,13 +126,20 @@ export interface CloudProvider {
   providedIn: 'root'
 })
 export class EstimationService {
-  private apiUrl = environment.apiUrl || 'http://localhost:8000';
-  
+  private apiUrl = environment.apiUrl;
+
   // Client-side ETag cache: store {payloadHash → {etag, result, timestamp}}
   private etagCache: Map<string, { etag: string; result: EstimationResult; timestamp: number }> = new Map();
   private cacheMaxAge = 24 * 60 * 60 * 1000; // 24 hours TTL
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    if (environment.production) {
+      console.log("We are in Production mode!");
+    }
+    else {
+      console.log("We are in Development mode!");
+    }
+  }
 
   /**
    * Generate a simple hash of the payload to use as cache key
@@ -154,10 +161,10 @@ export class EstimationService {
       architecture,
       currency
     };
-    
+
     const payloadHash = this.hashPayload(payload);
     const cached = this.etagCache.get(payloadHash);
-    
+
     // Check if we have a valid cached entry
     if (cached && (Date.now() - cached.timestamp) < this.cacheMaxAge) {
       // Build headers with If-None-Match to validate cache with server

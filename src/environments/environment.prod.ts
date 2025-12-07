@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: '/api' // Relative path for production (behind Nginx/proxy)
+    apiUrl: 'https://archcostestimator.com/api'
 };
