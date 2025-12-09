@@ -1,18 +1,18 @@
 <div class="min-h-screen bg-gray-50 font-sans text-gray-900">
   <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3 flex justify-between items-center gap-3 sm:gap-4">
-      <div class="flex items-center gap-2.5 sm:gap-3 md:gap-4">
-        <div class="relative">
+      <div class="flex items-center gap-2.5 sm:gap-3 md:gap-4 min-w-0">
+        <div class="relative flex-shrink-0">
           <img src="../../assets/ArchCostEstimator_Logo.png" alt="ArchCostEstimator"
-            class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain rounded-lg p-0.01 bg-white">
+            class="block w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 object-contain rounded-md bg-white p-0.5" />
         </div>
         <h1
-          class="text-xl sm:text-2xl md:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 tracking-tight leading-tight">
+          class="truncate text-lg sm:text-2xl md:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 tracking-tight leading-tight">
           ArchCostEstimator
         </h1>
       </div>
 
-      <div class="flex items-center gap-2 sm:gap-3">
+      <div class="flex items-center gap-2 sm:gap-3 overflow-x-auto">
         <select [(ngModel)]="selectedCurrency" (change)="calculateCost()"
           class="bg-gray-100 border-none rounded-lg py-1.5 px-2 sm:px-3 text-xs sm:text-sm font-medium hover:bg-gray-200 transition-colors cursor-pointer focus:ring-2 focus:ring-blue-500">
           <option value="USD">USD</option>
@@ -51,26 +51,26 @@
           </optgroup>
         </select>
 
-        <button (click)="downloadPDF()"
-          class="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors font-medium text-xs sm:text-sm">
+        <button aria-label="Export as PDF" (click)="downloadPDF()"
+          class="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors font-medium text-xs sm:text-sm shrink-0 focus:outline-none focus:ring-2 focus:ring-green-400">
           <svg class="h-3.5 w-3.5 sm:h-4 sm:w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
             stroke="currentColor" stroke-width="2">
             <path d="M12 3v9" stroke-linecap="round" />
             <path d="M7 11l5 5 5-5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M4 20h16" stroke-linecap="round" />
           </svg>
-          <span>PDF</span>
+          <span class="hidden xs:hidden sm:inline">PDF</span>
         </button>
 
-        <button (click)="downloadCSV()"
-          class="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 bg-purple-50 text-purple-600 rounded-lg hover:bg-purple-100 transition-colors font-medium text-xs sm:text-sm">
+        <button aria-label="Export as CSV" (click)="downloadCSV()"
+          class="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 bg-purple-50 text-purple-600 rounded-lg hover:bg-purple-100 transition-colors font-medium text-xs sm:text-sm shrink-0 focus:outline-none focus:ring-2 focus:ring-purple-300">
           <svg class="h-3.5 w-3.5 sm:h-4 sm:w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
             stroke="currentColor" stroke-width="2">
             <path d="M12 3v9" stroke-linecap="round" />
             <path d="M7 11l5 5 5-5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M4 20h16" stroke-linecap="round" />
           </svg>
-          <span>CSV</span>
+          <span class="hidden xs:hidden sm:inline">CSV</span>
         </button>
 
         <button (click)="generateShareUrl()"
@@ -88,6 +88,11 @@
   </header>
 
   <main class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 md:py-8">
+    <div aria-hidden="true" class="w-full h-1 mb-4 bg-transparent">
+      <div *ngIf="isLoading"
+        class="h-1 bg-gradient-to-r from-blue-400 via-blue-600 to-purple-600 animate-pulse rounded-full"
+        style="width:100%"></div>
+    </div>
     <!-- Architecture Selection -->
     <div class="mb-6 md:mb-10">
       <h2 class="text-lg md:text-xl font-semibold mb-3 md:mb-5 text-gray-800">Select Architecture</h2>
@@ -144,7 +149,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-4">
       <!-- Left Column: Inputs -->
       <div class="md:col-span-1 lg:col-span-1 space-y-4 md:space-y-6">
         <app-traffic-input [traffic]="traffic" (trafficChange)="onTrafficChange($event)">
@@ -262,22 +267,94 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-white border-t border-gray-200 mt-8 md:mt-12 py-4 md:py-8">
-    <div
-      class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
-      <p class="text-gray-500 text-xs md:text-sm">© 2025 ArchCostEstimator. All rights reserved.</p>
+  <footer class="bg-white border-t border-gray-200 mt-12 md:mt-20 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div *ngIf="pricingStatus"
-        class="flex items-center gap-2 px-2 md:px-3 py-1 md:py-1.5 bg-gray-50 rounded-full border border-gray-200">
-        <div class="w-2 h-2 rounded-full" [class.bg-green-500]="pricingStatus.using_database"
-          [class.bg-yellow-500]="!pricingStatus.using_database">
+      <!-- Section 1: About & Status -->
+      <div class="flex flex-col md:flex-row justify-between items-start gap-6 md:gap-12 mb-8">
+
+        <!-- About (Left) -->
+        <div class="max-w-2xl">
+          <p class="text-xs text-gray-500 leading-relaxed text-justify md:text-left">
+            ArchCostEstimator is a professional cloud cost intelligence platform. Compare real-time pricing across 17+
+            global providers, analyze architectural trade-offs, and generate data-driven 3-year scaling roadmaps
+            instantly.
+          </p>
         </div>
-        <span class="text-xs font-medium text-gray-600">
-          {{pricingStatus.using_database ? 'Live Pricing' : 'Default Pricing'}}
-        </span>
-        <span class="text-xs text-gray-400 border-l border-gray-300 pl-2">
-          {{pricingStatus.last_updated | date:'medium'}}
-        </span>
+
+        <!-- Live Pricing Status (Right) -->
+        <div class="flex flex-col md:items-end space-y-1 shrink-0">
+          <div *ngIf="pricingStatus"
+            class="inline-flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-full border border-gray-200 w-fit">
+            <div class="w-2 h-2 rounded-full" [class.bg-green-500]="pricingStatus.using_database"
+              [class.bg-yellow-500]="!pricingStatus.using_database">
+            </div>
+            <span class="text-[11px] font-medium text-gray-600">
+              {{pricingStatus.using_database ? 'Live Pricing' : 'Default Pricing'}}
+            </span>
+          </div>
+          <div *ngIf="pricingStatus" class="text-[10px] text-gray-400">
+            Updated: {{pricingStatus.last_updated | date:'medium'}}
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Logo & Copyright -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 py-6 border-t border-gray-100">
+        <div class="flex items-center gap-2">
+          <img src="../../assets/ArchCostEstimator_Logo.png" alt="Logo" class="w-6 h-6 object-contain" />
+          <h3 class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+            ArchCostEstimator
+          </h3>
+          <span class="text-gray-300">|</span>
+          <p class="text-[10px] md:text-xs text-gray-400">
+            © 2025 ArchCostEstimator. All rights reserved.
+          </p>
+        </div>
+
+        <!-- Legal Toggle Action -->
+        <button (click)="toggleDisclaimer()"
+          class="group flex items-center gap-1.5 text-xs font-medium text-gray-400 hover:text-gray-600 transition-colors focus:outline-none">
+          <span>Legal Disclaimer</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 transition-transform duration-200"
+            [class.rotate-180]="showDisclaimer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Collapsible Disclaimer Section -->
+      <div *ngIf="showDisclaimer"
+        class="mt-6 p-6 bg-gray-50 rounded-xl border border-gray-100 space-y-3 transition-all duration-300 ease-in-out">
+        <h5 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Terms of Use & Disclaimer</h5>
+
+        <p class="text-[11px] text-gray-500 leading-relaxed text-justify">
+          The information, pricing data, and cost estimations provided through the ArchCostEstimator
+          platform are intended solely for general informational and estimation purposes.
+          The figures generated or displayed do not represent actual quotations, official pricing,
+          financial advice, or legally binding offers of any kind.
+        </p>
+        <p class="text-[11px] text-gray-500 leading-relaxed text-justify">
+          Cloud computing and associated service costs are subject to frequent changes based on numerous
+          variables, including but not limited to usage patterns, service configurations, provider-specific
+          pricing models, regional factors, currency exchange rates, and applicable discounts or promotions.
+          Consequently, the estimates produced by ArchCostEstimator may differ significantly from the
+          actual costs incurred.
+        </p>
+        <p class="text-[11px] text-gray-500 leading-relaxed text-justify">
+          While ArchCostEstimator strives to present accurate and up-to-date information, no guarantees
+          or warranties, express or implied, are made regarding the completeness, accuracy, reliability,
+          or suitability of any cost information or outcomes generated by the tool. All data and results
+          are provided on an “as is” and “as available” basis and may be modified, updated, or
+          discontinued without prior notice.
+        </p>
+        <p class="text-[11px] text-gray-500 leading-relaxed text-justify">
+          Users are strongly advised to independently verify all pricing details directly with respective
+          cloud service providers before making any purchasing, budgeting, or architectural decisions.
+          Under no circumstances shall ArchCostEstimator, its developers, affiliates, or partners be held
+          liable for any direct, indirect, incidental, consequential, or special losses, damages, or
+          expenses arising from or related to the use of, or reliance on, the information and cost.
+        </p>
       </div>
     </div>
   </footer>

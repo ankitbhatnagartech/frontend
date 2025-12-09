@@ -126,12 +126,17 @@ export class AppComponent implements OnInit {
   pricingStatus: PricingStatus | null = null;
   isLoading: boolean = false;
   shareUrlCopied: boolean = false;
+  showDisclaimer: boolean = false;
 
   constructor(
     private estimationService: EstimationService,
     private route: ActivatedRoute,
     private exportService: ExportService
   ) { }
+
+  toggleDisclaimer() {
+    this.showDisclaimer = !this.showDisclaimer;
+  }
 
   ngOnInit() {
     this.loadCloudProviders();
